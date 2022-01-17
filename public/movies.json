@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "name": "Face/Off",
+    "releaseDate": "1997",
+    "actors": ["Nicolas Cage", "John Travolta", "Gina Gershon"],
+    "moviePoster": "faceoff.jpg",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Videodrome",
+    "releaseDate": "1983",
+    "actors": ["James Woods", "Debbie Harry"],
+    "moviePoster": "videodrome.jpg",
+    "rating": 5
+  },
+  {}
+]
