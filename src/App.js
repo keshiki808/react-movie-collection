@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import SubmitPage from "./pages/SubmitPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
