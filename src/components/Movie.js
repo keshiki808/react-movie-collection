@@ -20,7 +20,7 @@ const Movie = ({ info, removeItem }) => {
 
   return (
     <>
-      <div className=" max-w-md min-w-sm rounded overflow-hidden shadow-lg my-[25px] mx-[10px] border-2 border-black  w-1/2">
+      <div className=" max-w-md min-w-sm rounded overflow-hidden shadow-lg my-[25px] mx-[10px] border-2 border-black w-1/2 bg-gray-300">
         <img
           className="mx-auto my-[5px]"
           style={{ height: "250px" }}

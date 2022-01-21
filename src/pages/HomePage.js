@@ -10,10 +10,15 @@ const HomePage = ({ movies, setMovies }) => {
 
   return (
     <>
-      <h1 className="text-3xl my-[10px] ">Movie Collection</h1>
+      <h1 className="text-3xl my-[10px] bg-gray-200 w-fit mx-auto p-[8px] rounded">
+        Movie Collection
+      </h1>
+
       <div className="flex flex-wrap mx-[25px]">
         {movies.map((movie) => {
-          return <Movie info={movie} removeItem={removeMovie}></Movie>;
+          return (
+            <Movie key={movie.id} info={movie} removeItem={removeMovie}></Movie>
+          );
         })}
       </div>
     </>
