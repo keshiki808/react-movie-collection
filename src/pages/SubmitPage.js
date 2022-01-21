@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import "react-dropdown/style.css";
 import { useAlert } from "react-alert";
 import TextForm from "../components/TextForm";
+import RatingForm from "../components/RatingForm";
 
 const SubmitPage = ({ movies, setMovies }) => {
   const alert = useAlert();
@@ -76,42 +77,13 @@ const SubmitPage = ({ movies, setMovies }) => {
             onChangeHandler={changeUpdater}
             formTitle="Movie name"
           ></TextForm>
-          {/* <div className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <div className="text-xl">
-              <label htmlFor="name">Movie title : </label>
-            </div>
-            <input
-              className="border-2 border-black"
-              type="text"
-              id="name"
-              name="name"
-              value={movie.name}
-              onChange={changeUpdater}
-            />
-          </div> */}
-
           <TextForm
             id="releaseDate"
             name="releaseDate"
-            value={movie.date}
+            value={movie.releaseDate}
             onChangeHandler={changeUpdater}
             formTitle="Release Date"
           ></TextForm>
-          {/* <div className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <div>
-              <label className="text-xl" htmlFor="releaseDate">
-                Release date :{" "}
-              </label>
-            </div>
-            <input
-              className="border-2 border-black"
-              type="text"
-              id="releaseDate"
-              name="releaseDate"
-              value={movie.releaseDate}
-              onChange={changeUpdater}
-            />
-          </div> */}
           <TextForm
             id="actors"
             name="actors"
@@ -119,21 +91,6 @@ const SubmitPage = ({ movies, setMovies }) => {
             onChangeHandler={changeUpdater}
             formTitle="Actors (Separate with comma)"
           ></TextForm>
-          {/* <div className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <div>
-              <label className="text-xl" htmlFor="actors">
-                Actors (Separate with comma):{" "}
-              </label>
-            </div>
-            <input
-              className="border-2 border-black"
-              type="text"
-              id="actors"
-              name="actors"
-              value={movie.actors}
-              onChange={changeUpdater}
-            />
-          </div> */}
           <div className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             <div className="mb-[8px]">
               <label className="text-xl underline" htmlFor="moviePoster">
@@ -148,25 +105,14 @@ const SubmitPage = ({ movies, setMovies }) => {
               onChange={() => fileSelector(fileInput.current.files[0])}
             />
           </div>
-          <div className="shadow appearance-none border rounded w-full py-10 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <div>
-              <label className="text-xl" htmlFor="rating">
-                Rating :
-              </label>
-            </div>
-            <div className=" text-lg text-purple-600">
-              <select
-                value={movie.rating}
-                name="rating"
-                id="rating"
-                onChange={changeUpdater}
-              >
-                {ratingValues.map((rating) => {
-                  return <option value={rating}>{rating}</option>;
-                })}
-              </select>
-            </div>
-          </div>
+          <RatingForm
+            defaultSelection="Choose a rating"
+            name="rating"
+            id="rating"
+            value={movie.rating}
+            changeHandler={changeUpdater}
+            optionsArr={ratingValues}
+          ></RatingForm>
 
           <button
             className="p-[10px]  text-center bg-gray-200 text-3xl text-purple-600 hover:text-pink-800 rounded mt-5"

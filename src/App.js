@@ -14,7 +14,7 @@ function App() {
   }, []);
   return (
     <Router>
-      <div className="App bg-cyan-600">
+      <div className="App bg-cyan-600 h-fit">
         <NavBar />
         <Routes>
           <Route

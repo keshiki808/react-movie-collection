@@ -16,7 +16,6 @@ const colors = {
 
 const Movie = ({ info, removeItem }) => {
   const { id, name, releaseDate, actors, moviePoster, rating } = info;
-  console.log(info);
 
   return (
     <>
