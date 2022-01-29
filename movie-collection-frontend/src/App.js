@@ -8,10 +8,14 @@ import { useEffect, useState } from "react";
 function App() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("./movies.json")
-      .then((response) => response.json())
-      .then(setMovies);
+    const fetchData = async () => {
+      const urlFetch = await fetch("/api/movies");
+      const moviesData = await urlFetch.json();
+      console.log(moviesData);
+    };
+    fetchData();
   }, []);
+  console.log(movies);
   return (
     <Router>
       <div className="App bg-cyan-600 h-fit">
