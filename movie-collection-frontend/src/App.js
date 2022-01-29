@@ -9,9 +9,15 @@ function App() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const urlFetch = await fetch("/api/movies");
-      const moviesData = await urlFetch.json();
-      console.log(moviesData);
+      try {
+        const urlFetch = await fetch("/api/movies");
+        const moviesData = await urlFetch.json();
+        console.log(moviesData);
+        setMovies(moviesData);
+      } catch (error) {
+        console.log("Error here");
+        console.log(error);
+      }
     };
     fetchData();
   }, []);

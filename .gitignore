@@ -1,15 +1,17 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+/movie-collection-frontend/node_modules
+/movie-collection-backend/node_modules
 /.pnp
 .pnp.js
 
 # testing
-/coverage
+/movie-collection-frontend/coverage
 
 # production
-/build
+/movie-collection-frontend/build
+/movie-collection-backend/build
 
 # misc
 .DS_Store
