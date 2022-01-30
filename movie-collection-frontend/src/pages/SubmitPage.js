@@ -3,6 +3,7 @@ import "react-dropdown/style.css";
 import { useAlert } from "react-alert";
 import TextForm from "../components/TextForm";
 import RatingForm from "../components/RatingForm";
+import axios from "axios";
 
 const SubmitPage = ({ movies, setMovies }) => {
   const alert = useAlert();
@@ -27,9 +28,8 @@ const SubmitPage = ({ movies, setMovies }) => {
 
   const fileSelector = (e) => {
     const name = "moviePoster";
-    const objectUrl = URL.createObjectURL(e);
-    setMovie({ ...movie, [name]: objectUrl });
-    return () => URL.revokeObjectURL(objectUrl);
+    const file = e.target.files[0];
+    setMovie({ ...movie, [name]: file });
   };
 
   const submitData = (e) => {
@@ -46,6 +46,25 @@ const SubmitPage = ({ movies, setMovies }) => {
       });
       const newMovieID = { ...movie, id: new Date().getTime().toString() };
       const newMovieComplete = { ...newMovieID, actors: formattedActors };
+      const formData = new FormData();
+      formData.append("id", newMovieComplete.id);
+      formData.append("name", newMovieComplete.name);
+      formData.append("releaseDate", newMovieComplete.releaseDate);
+      formData.append("actors", newMovieComplete.actors);
+      formData.append("file", newMovieComplete.moviePoster);
+      formData.append("rating", newMovieComplete.rating);
+      axios
+        .post("/api/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((e) => {
+          console.log("Upload successful");
+        })
+        .catch((e) => {
+          console.error("Error", e);
+        });
       setMovies([...movies, newMovieComplete]);
       setMovie({
         id: "",
@@ -56,6 +75,7 @@ const SubmitPage = ({ movies, setMovies }) => {
         rating: "",
       });
       fileInput.current.value = "";
+
       alert.success(<div style={{ color: "Green" }}>Movie submitted</div>);
     } else {
       alert.error(
@@ -102,7 +122,7 @@ const SubmitPage = ({ movies, setMovies }) => {
               id="moviePoster"
               name="moviePoster"
               ref={fileInput}
-              onChange={() => fileSelector(fileInput.current.files[0])}
+              onChange={fileSelector}
             />
           </div>
           <RatingForm
