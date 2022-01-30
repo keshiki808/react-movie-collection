@@ -3,9 +3,11 @@ import { MongoClient } from "mongodb";
 
 // const express = require('express')
 const multer = require("multer");
-// const cors = require("cors");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 //middleware
 app.use(express.json());
@@ -47,11 +49,11 @@ app.post("/api/upload", (req, res) => {
       return res.status(500).json(err);
     }
 
-    // // const {id, name, releaseDate, actors, moviePoster, rating} = req.body
-    // const client = await MongoClient.connect("mongodb://localhost:27017");
+    // const {id, name, releaseDate, actors, moviePoster, rating} = req.body
+    // const client = MongoClient.connect("mongodb://localhost:27017");
     // const db = client.db("movie-collection");
 
-    // await db.collection("movies").insertOne({
+    // db.collection("movies").insertOne({
     //   name: req.body.name,
     //   date: req.body.releaseDate,
     //   actors: req.body.actors,
@@ -59,7 +61,10 @@ app.post("/api/upload", (req, res) => {
     //   rating: req.body.rating,
     // });
 
-    return res.status(200).send(req);
+    console.log(req.file, req.body);
+
+    res.status(200).json({ message: "Success" });
+    // client.close();
   });
 });
 
