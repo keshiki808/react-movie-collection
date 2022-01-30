@@ -41,11 +41,15 @@ const SubmitPage = ({ movies, setMovies }) => {
       movie.moviePoster &&
       movie.rating
     ) {
-      const formattedActors = movie.actors.split(",").map((actor) => {
-        return actor.trim();
-      });
-      const newMovieID = { ...movie, id: new Date().getTime().toString() };
-      const newMovieComplete = { ...newMovieID, actors: formattedActors };
+      // const formattedActors = movie.actors.split(",").map((actor) => {
+      //   return actor.trim();
+      // });
+      // const newMovieID = { ...movie, id: new Date().getTime().toString() };
+      // const newMovieComplete = { ...newMovieID, actors: formattedActors };
+      const newMovieComplete = {
+        ...movie,
+        id: new Date().getTime().toString(),
+      };
       const formData = new FormData();
       formData.append("id", newMovieComplete.id);
       formData.append("name", newMovieComplete.name);

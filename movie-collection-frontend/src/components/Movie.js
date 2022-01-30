@@ -23,11 +23,7 @@ const Movie = ({ info, removeItem }) => {
         <img
           className="mx-auto my-[5px]"
           style={{ height: "250px" }}
-          src={
-            moviePoster.startsWith("blob")
-              ? `${moviePoster}`
-              : `./images/${moviePoster}`
-          }
+          src={`./images/${moviePoster}`}
           alt={name}
         />
         <div className="px-6 py-4 ">
