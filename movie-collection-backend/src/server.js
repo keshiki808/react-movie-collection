@@ -91,9 +91,18 @@ app.delete("/api/delete/:id", async function (req, res) {
     await db
       .collection("movies")
       .deleteOne({ _id: new mongo.ObjectID(id) }, function (err, results) {});
-    fs.unlink(`./public/images/${posterName}`, (err) => {
-      if (err) throw err;
-      console.log("Poster was deleted");
+
+    fs.stat(`./public/images/${posterName}`, function (err, details) {
+      if (err) {
+        return console.error(err);
+      }
+
+      fs.unlink(`./public/images/${posterName}`, (err) => {
+        if (err) {
+          return console.log(err);
+        }
+        console.log("Poster was deleted");
+      });
     });
 
     res.json({ success: id });
@@ -106,17 +115,8 @@ app.post("/api/addjson", async function (req, res) {
   try {
     const client = await MongoClient.connect("mongodb://localhost:27017");
     const db = await client.db("movie-collection");
-<<<<<<< HEAD
-=======
-    // const data = JSON.parse(req);
-    // console.log(data);
 
-    // const data = JSON.parse(req.body);
-
-    console.log(data);
-
-    console.log(req.body);
->>>>>>> ae6008607d8345bc6d17a234f7cd89d88867c3f3
+    await db.collection("movies").drop();
 
     await db.collection("movies").insertMany(req.body, function (err, result) {
       console.log(result);
