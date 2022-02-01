@@ -1,13 +1,20 @@
 import express from "express";
 import { MongoClient } from "mongodb";
+import { unlink } from "fs";
 
 // const express = require('express')
 const multer = require("multer");
 const cors = require("cors");
+const mongo = require("mongodb");
+const fs = require("fs");
 
 const app = express();
 
 app.use(cors());
+
+app.use("/public", express.static("public"));
+
+// app.use('/public', express.static(__dirname + '/public')
 
 //middleware
 app.use(express.json());
@@ -34,7 +41,7 @@ app.get("/api/movies/", async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images");
+    cb(null, "./public/images");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
@@ -80,6 +87,33 @@ app.post("/api/upload", async (req, res) => {
     }
     // client.close();
   });
+});
+
+app.delete("/api/delete/:id", async function (req, res) {
+  try {
+    const client = await MongoClient.connect("mongodb://localhost:27017");
+    const id = req.params.id;
+
+    console.log(id);
+    const posterName = "1643687511341-1643516222059.gif";
+    const db = await client.db("movie-collection");
+
+    db.collection("movies").deleteOne(
+      { _id: new mongo.ObjectID(id) },
+      function (err, results) {}
+    );
+    console.log("Dir below");
+    console.log(__dirname);
+
+    fs.unlink(`./public/images/${posterName}`, (err) => {
+      if (err) throw err;
+      console.log("path/file.txt was deleted");
+    });
+
+    res.json({ success: id });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting item: ", error });
+  }
 });
 
 app.listen(8000, () => console.log("Server is running on port 8000"));

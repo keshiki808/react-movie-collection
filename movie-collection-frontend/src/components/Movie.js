@@ -23,7 +23,9 @@ const Movie = ({ info, removeItem }) => {
         <img
           className="mx-auto my-[5px]"
           style={{ height: "250px" }}
-          src={`./images/${moviePoster}`}
+          // src={`./images/${moviePoster}`}
+          src={`http://localhost:8000/public/images/${moviePoster}`}
+          // src={`${window.href}${moviePoster}`}
           alt={name}
         />
         <div className="px-6 py-4 ">
