@@ -5,7 +5,7 @@ import TextForm from "../components/TextForm";
 import RatingForm from "../components/RatingForm";
 import axios from "axios";
 
-const SubmitPage = ({ movies, setMovies }) => {
+const SubmitPage = ({ movies, setMovies, fetchData }) => {
   const alert = useAlert();
   const [movie, setMovie] = useState({
     name: "",
@@ -40,17 +40,7 @@ const SubmitPage = ({ movies, setMovies }) => {
       movie.moviePoster &&
       movie.rating
     ) {
-      // const formattedActors = movie.actors.split(",").map((actor) => {
-      //   return actor.trim();
-      // });
-      // const newMovieID = { ...movie, id: new Date().getTime().toString() };
-      // const newMovieComplete = { ...newMovieID, actors: formattedActors };
-      // const newMovieComplete = {
-      //   ...movie,
-      //   id: new Date().getTime().toString(),
-      // };
       const formData = new FormData();
-      // formData.append("id", newMovieComplete.id);
       formData.append("name", movie.name);
       formData.append("releaseDate", movie.releaseDate);
       formData.append("actors", movie.actors);
@@ -78,6 +68,8 @@ const SubmitPage = ({ movies, setMovies }) => {
       });
       fileInput.current.value = "";
 
+      fetchData();
+
       alert.success(<div style={{ color: "Green" }}>Movie submitted</div>);
     } else {
       alert.error(
@@ -87,7 +79,7 @@ const SubmitPage = ({ movies, setMovies }) => {
   };
   return (
     <>
-      <article className=" min-w-fit p-[50px] max-w-lg mx-auto border-2 mt-[20px] border-black rounded-md bg-gray-300">
+      <article className=" min-w-fit border-2 py-[25px] mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-5xl mt-[20px] border-black rounded-md bg-gray-300">
         <h1 className="text-xl my-[15px] underline">
           New movie submission form
         </h1>
@@ -137,7 +129,7 @@ const SubmitPage = ({ movies, setMovies }) => {
           ></RatingForm>
 
           <button
-            className="p-[10px]  text-center bg-gray-200 text-3xl text-purple-600 hover:text-pink-800 rounded mt-5"
+            className="transition duration-150 ease-in-out p-[10px] text-center bg-gray-200 text-3xl text-purple-600 hover:bg-slate-700 hover:text-pink-800 rounded mt-5"
             type="submit"
             onClick={submitData}
           >

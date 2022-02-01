@@ -38,7 +38,7 @@ const Movie = ({ info, removeItem }) => {
             colors={colors.star}
           />
           <button
-            className="justify-center bg-gray-200 text-3xl text-purple-600 hover:text-pink-800 rounded mt-2"
+            className="transition duration-150 ease-in-out justify-center bg-gray-200 text-3xl text-purple-600 hover:bg-slate-700 hover:text-pink-800 rounded mt-2"
             onClick={() => {
               removeItem(_id);
             }}
