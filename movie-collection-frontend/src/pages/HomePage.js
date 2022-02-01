@@ -9,7 +9,6 @@ const HomePage = ({ movies, setMovies, fetchData }) => {
     const requestOptions = {
       method: "DELETE",
     };
-    console.log(JSON.stringify(_id));
 
     fetch("/api/delete/" + _id, requestOptions)
       .then((response) => {
@@ -28,12 +27,14 @@ const HomePage = ({ movies, setMovies, fetchData }) => {
       <h1 className="animate-bounce text-3xl my-[35px] bg-gray-200 w-fit mx-auto p-[8px] rounded">
         <img
           className="animate-spin inline h-[50px] mx-[10px]"
-          src="http://localhost:8000/public/images/VHS123.svg.png"
+          src="/public/images/VHS123.svg.png"
+          alt="vhs tape"
         ></img>
         Movie Collection
         <img
           className="animate-spin inline h-[50px] mx-[10px]"
-          src="http://localhost:8000/public/images/VHS123.svg.png"
+          src="/public/images/VHS123.svg.png"
+          alt="vhs tape"
         ></img>
       </h1>
 

@@ -11,7 +11,6 @@ function App() {
     try {
       const urlFetch = await fetch("/api/movies");
       const moviesData = await urlFetch.json();
-      console.log(moviesData);
       setMovies(moviesData);
     } catch (error) {
       console.log("Error here");
@@ -21,7 +20,6 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(movies);
   return (
     <Router>
       <div className="App bg-cyan-600 h-fit">

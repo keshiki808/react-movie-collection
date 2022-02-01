@@ -83,7 +83,7 @@ const SubmitPage = ({ movies, setMovies, fetchData }) => {
         <h1 className="text-xl my-[15px] underline">
           New movie submission form
         </h1>
-        <form>
+        <form className="py-[25px] my-[25px]">
           <TextForm
             id="name"
             name="name"
