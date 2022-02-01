@@ -1,9 +1,37 @@
 import Movie from "../components/Movie";
+import { useEffect } from "react";
 
 const HomePage = ({ movies, setMovies }) => {
-  const removeMovie = (id) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const urlFetch = await fetch("/api/movies");
+        const moviesData = await urlFetch.json();
+        console.log(moviesData);
+        setMovies(moviesData);
+      } catch (error) {
+        console.log("Error here");
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  const removeMovie = (_id) => {
+    const requestOptions = {
+      method: "DELETE",
+    };
+    console.log(JSON.stringify(_id));
+
+    fetch("/api/delete/" + _id, requestOptions)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        // do what you want with the response here
+      });
+
     const newMovieCollection = movies.filter((movie) => {
-      return movie.id !== id;
+      return movie._id !== _id;
     });
     setMovies(newMovieCollection);
   };

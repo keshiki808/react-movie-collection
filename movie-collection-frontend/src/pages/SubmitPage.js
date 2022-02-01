@@ -8,7 +8,6 @@ import axios from "axios";
 const SubmitPage = ({ movies, setMovies }) => {
   const alert = useAlert();
   const [movie, setMovie] = useState({
-    id: "",
     name: "",
     releaseDate: "",
     actors: "",
@@ -46,17 +45,17 @@ const SubmitPage = ({ movies, setMovies }) => {
       // });
       // const newMovieID = { ...movie, id: new Date().getTime().toString() };
       // const newMovieComplete = { ...newMovieID, actors: formattedActors };
-      const newMovieComplete = {
-        ...movie,
-        id: new Date().getTime().toString(),
-      };
+      // const newMovieComplete = {
+      //   ...movie,
+      //   id: new Date().getTime().toString(),
+      // };
       const formData = new FormData();
-      formData.append("id", newMovieComplete.id);
-      formData.append("name", newMovieComplete.name);
-      formData.append("releaseDate", newMovieComplete.releaseDate);
-      formData.append("actors", newMovieComplete.actors);
-      formData.append("file", newMovieComplete.moviePoster);
-      formData.append("rating", newMovieComplete.rating);
+      // formData.append("id", newMovieComplete.id);
+      formData.append("name", movie.name);
+      formData.append("releaseDate", movie.releaseDate);
+      formData.append("actors", movie.actors);
+      formData.append("file", movie.moviePoster);
+      formData.append("rating", movie.rating);
       axios
         .post("/api/upload", formData, {
           headers: {
@@ -69,9 +68,8 @@ const SubmitPage = ({ movies, setMovies }) => {
         .catch((e) => {
           console.error("Error", e);
         });
-      setMovies([...movies, newMovieComplete]);
+      setMovies([...movies, movie]);
       setMovie({
-        id: "",
         name: "",
         releaseDate: "",
         actors: "",

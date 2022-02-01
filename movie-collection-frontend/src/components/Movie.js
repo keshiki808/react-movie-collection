@@ -15,7 +15,7 @@ const colors = {
 };
 
 const Movie = ({ info, removeItem }) => {
-  const { id, name, releaseDate, actors, moviePoster, rating } = info;
+  const { _id, name, releaseDate, actors, moviePoster, rating } = info;
 
   return (
     <>
@@ -40,7 +40,7 @@ const Movie = ({ info, removeItem }) => {
           <button
             className="justify-center bg-gray-200 text-3xl text-purple-600 hover:text-pink-800 rounded mt-2"
             onClick={() => {
-              removeItem(id);
+              removeItem(_id);
             }}
           >
             Remove movie

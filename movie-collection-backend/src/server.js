@@ -69,7 +69,6 @@ app.post("/api/upload", async (req, res) => {
       const id = parseInt(req.body.id);
 
       db.collection("movies").insertOne({
-        id: id,
         name: req.body.name,
         releaseDate: req.body.releaseDate,
         actors: formattedActors,
@@ -93,21 +92,19 @@ app.delete("/api/delete/:id", async function (req, res) {
   try {
     const client = await MongoClient.connect("mongodb://localhost:27017");
     const id = req.params.id;
-
-    console.log(id);
-    const posterName = "1643687511341-1643516222059.gif";
     const db = await client.db("movie-collection");
-
+    const movie = await db
+      .collection("movies")
+      .find({ _id: new mongo.ObjectID(id) })
+      .toArray();
+    const posterName = movie[0].moviePoster;
     db.collection("movies").deleteOne(
       { _id: new mongo.ObjectID(id) },
       function (err, results) {}
     );
-    console.log("Dir below");
-    console.log(__dirname);
-
     fs.unlink(`./public/images/${posterName}`, (err) => {
       if (err) throw err;
-      console.log("path/file.txt was deleted");
+      console.log("Poster was deleted");
     });
 
     res.json({ success: id });
