@@ -1,34 +1,20 @@
 import Movie from "../components/Movie";
 import { useEffect } from "react";
 
-const HomePage = ({ movies, setMovies }) => {
+const HomePage = ({ movies, setMovies, fetchData }) => {
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const urlFetch = await fetch("/api/movies");
-        const moviesData = await urlFetch.json();
-        console.log(moviesData);
-        setMovies(moviesData);
-      } catch (error) {
-        console.log("Error here");
-        console.log(error);
-      }
-    };
     fetchData();
   }, []);
   const removeMovie = (_id) => {
     const requestOptions = {
       method: "DELETE",
     };
-    console.log(JSON.stringify(_id));
 
     fetch("/api/delete/" + _id, requestOptions)
       .then((response) => {
         return response.json();
       })
-      .then((result) => {
-        // do what you want with the response here
-      });
+      .then((result) => {});
 
     const newMovieCollection = movies.filter((movie) => {
       return movie._id !== _id;
@@ -38,14 +24,28 @@ const HomePage = ({ movies, setMovies }) => {
 
   return (
     <>
-      <h1 className="text-3xl my-[10px] bg-gray-200 w-fit mx-auto p-[8px] rounded">
+      <h1 className="animate-bounce text-3xl my-[35px] bg-gray-200 w-fit mx-auto p-[8px] rounded">
+        <img
+          className="animate-spin inline h-[50px] mx-[10px]"
+          src="/public/images/VHS123.svg.png"
+          alt="vhs tape"
+        ></img>
         Movie Collection
+        <img
+          className="animate-spin inline h-[50px] mx-[10px]"
+          src="/public/images/VHS123.svg.png"
+          alt="vhs tape"
+        ></img>
       </h1>
 
       <div className="flex flex-wrap mx-[25px]">
         {movies.map((movie) => {
           return (
-            <Movie key={movie.id} info={movie} removeItem={removeMovie}></Movie>
+            <Movie
+              key={movie._id}
+              info={movie}
+              removeItem={removeMovie}
+            ></Movie>
           );
         })}
       </div>

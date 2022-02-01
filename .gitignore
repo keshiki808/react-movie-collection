@@ -12,6 +12,7 @@
 # production
 /movie-collection-frontend/build
 /movie-collection-backend/build
+/movie-collection-backend/src/build
 
 # misc
 .DS_Store
