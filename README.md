@@ -1,5 +1,7 @@
 # Movie Collection
 
+***SEE THE ROOT DIRECTORY FOR .txt FILE THAT INCLUDES JSON DATA AND ROUTE FOR SUBMITTING DATA
+
 A movie collection app in order to develop skills using React web development.
 
 Based around Create, Read, Update, Delete features, it is essentially a web app that hosts the ability to host an editable collection of movies.
