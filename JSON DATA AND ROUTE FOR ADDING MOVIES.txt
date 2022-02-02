@@ -24,6 +24,15 @@ JSON data:
     ],
     "moviePoster": "videodrome.jpg",
     "rating": 4.5
+  },{
+    "name": "Char's Counterattack",
+    "releaseDate": "1983",
+    "actors": [
+      "Tōru Furuya",
+      "Shūichi Ikeda"
+    ],
+    "moviePoster": "1643719408964-charscounterattack.jpg",
+    "rating": 4.5
   },
   {
     "name": "Wayne's World",
