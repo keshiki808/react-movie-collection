@@ -1,6 +1,6 @@
 # Movie Collection
 
-***SEE THE ROOT DIRECTORY FOR .txt FILE THAT INCLUDES JSON DATA AND ROUTE FOR SUBMITTING DATA
+***SEE THE ROOT DIRECTORY FOR .txt FILE THAT INCLUDES JSON DATA AND ROUTE FOR SUBMITTING DATA***
 
 A movie collection app in order to develop skills using React web development.
 
